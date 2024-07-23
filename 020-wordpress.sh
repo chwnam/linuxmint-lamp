@@ -1,5 +1,8 @@
 #!/bin/bash
 
+EMAIL="ep6tri@hotmail.com"
+WP_BASE="/home/changwoo/develop/wordpress"
+
 if [ ! -d ~/bin ]; then
     mkdir ~/bin
 fi
@@ -18,3 +21,38 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 mv wp-cli.phar ~/bin/wp
 chmod +x ~/bin/wp
 
+# Directory
+echo "<Directory \"$WP_BASE\">
+    Require all granted
+    AllowOverride all
+</Directory>
+" > ~/develop/apache2/conf.d/directory.conf
+
+# Apache Virtual Host Template
+echo "<VirtualHost *:8080>
+  ServerAdmin  $EMAIL
+  DocumentRoot $WP_BASE/@@@NAME@@@
+  ServerName   @@@NAME@@@.localhost
+
+  ErrorLog  ${APACHE_LOG_DIR}/error-base.log
+  CustomLog ${APACHE_LOG_DIR}/access-base.log combined
+
+  RewriteEngine on
+  RewriteCond %{SERVER_NAME} =@@@NAME@@@.localhost
+  RewriteRule ^ https://%{SERVER_NAME}:8443%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
+<IfModule mod_ssl.c>
+<VirtualHost *:8443>
+  ServerAdmin  $EMAIL
+  DocumentRoot $WP_BASE/@@@NAME@@@
+  ServerName   @@@NAME@@@.localhost
+
+  ErrorLog  ${APACHE_LOG_DIR}/error-base.log
+  CustomLog ${APACHE_LOG_DIR}/access-base.log combined
+
+  SSLEngine             On
+  SSLCertificateFile    /etc/ssl/certs/ssl-cert-snakeoil.pem
+  SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+</VirtualHost>
+</IfModule>
+" > ~/develop/apache2/vhosts.d/sample.conf.dist
