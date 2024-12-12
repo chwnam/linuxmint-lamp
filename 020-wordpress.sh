@@ -31,11 +31,11 @@ echo "<Directory \"$WP_BASE\">
 # Apache Virtual Host Template
 echo "<VirtualHost *:8080>
   ServerAdmin  $EMAIL
-  DocumentRoot $WP_BASE/@@@NAME@@@
+  DocumentRoot ${WP_BASE}/@@@NAME@@@
   ServerName   @@@NAME@@@.localhost
 
-  ErrorLog  ${APACHE_LOG_DIR}/error-base.log
-  CustomLog ${APACHE_LOG_DIR}/access-base.log combined
+  ErrorLog  \${APACHE_LOG_DIR}/error-base.log
+  CustomLog \${APACHE_LOG_DIR}/access-base.log combined
 
   RewriteEngine on
   RewriteCond %{SERVER_NAME} =@@@NAME@@@.localhost
@@ -44,15 +44,15 @@ echo "<VirtualHost *:8080>
 <IfModule mod_ssl.c>
 <VirtualHost *:8443>
   ServerAdmin  $EMAIL
-  DocumentRoot $WP_BASE/@@@NAME@@@
+  DocumentRoot ${WP_BASE}/@@@NAME@@@
   ServerName   @@@NAME@@@.localhost
 
-  ErrorLog  ${APACHE_LOG_DIR}/error-base.log
-  CustomLog ${APACHE_LOG_DIR}/access-base.log combined
+  ErrorLog  \${APACHE_LOG_DIR}/error-base.log
+  CustomLog \${APACHE_LOG_DIR}/access-base.log combined
 
   SSLEngine             On
-  SSLCertificateFile    /etc/ssl/certs/ssl-cert-snakeoil.pem
-  SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+  SSLCertificateFile    /home/changwoo/develop/apache2/certs/@@@NAME@@@.crt
+  SSLCertificateKeyFile /home/changwoo/develop/apache2/certs/cert-key.pem
 </VirtualHost>
 </IfModule>
 " > ~/develop/apache2/vhosts.d/sample.conf.dist
