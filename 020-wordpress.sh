@@ -51,7 +51,7 @@ echo "<VirtualHost *:8080>
   CustomLog \${APACHE_LOG_DIR}/access-base.log combined
 
   SSLEngine             On
-  SSLCertificateFile    /home/changwoo/develop/apache2/certs/@@@NAME@@@.crt
+  SSLCertificateFile    /home/changwoo/develop/apache2/certs/wp.site.crt
   SSLCertificateKeyFile /home/changwoo/develop/apache2/certs/cert-key.pem
 </VirtualHost>
 </IfModule>
