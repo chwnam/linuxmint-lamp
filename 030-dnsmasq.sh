@@ -6,7 +6,7 @@ sudo sed -i 's/#port=5353/port=5353/' /etc/dnsmasq.conf
 sudo sed -i 's/#conf-dir=\/etc\/dnsmasq.d\/,\*\.conf/conf-dir=\/etc\/dnsmasq.d\/,*.conf/' /etc/dnsmasq.conf
 
 echo "address=/localhost/127.0.0.1
-address=/wp/127.0.0.1
+address=/wp.site/127.0.0.1
 " | sudo tee /etc/dnsmasq.d/develop.conf
 
 sudo sed -i 's/#DNS=/DNS=127.0.0.1:5353/' /etc/systemd/resolved.conf

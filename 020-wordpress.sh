@@ -32,20 +32,20 @@ echo "<Directory \"$WP_BASE\">
 echo "<VirtualHost *:8080>
   ServerAdmin  $EMAIL
   DocumentRoot ${WP_BASE}/@@@NAME@@@
-  ServerName   @@@NAME@@@.localhost
+  ServerName   @@@NAME@@@.wp.site
 
   ErrorLog  \${APACHE_LOG_DIR}/error-base.log
   CustomLog \${APACHE_LOG_DIR}/access-base.log combined
 
   RewriteEngine on
-  RewriteCond %{SERVER_NAME} =@@@NAME@@@.localhost
+  RewriteCond %{SERVER_NAME} =@@@NAME@@@.wp.site
   RewriteRule ^ https://%{SERVER_NAME}:8443%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 <IfModule mod_ssl.c>
 <VirtualHost *:8443>
   ServerAdmin  $EMAIL
   DocumentRoot ${WP_BASE}/@@@NAME@@@
-  ServerName   @@@NAME@@@.localhost
+  ServerName   @@@NAME@@@.wp.site
 
   ErrorLog  \${APACHE_LOG_DIR}/error-base.log
   CustomLog \${APACHE_LOG_DIR}/access-base.log combined
