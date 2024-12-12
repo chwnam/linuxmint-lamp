@@ -36,3 +36,5 @@ else
     sudo sed -i 's/xdebug\.mode=.*/xdebug.mode=debug,develop/g' /etc/php/$PHPVER/fpm/conf.d/20-xdebug.ini
 fi
 
+sudo systemctl enable php8.3-fpm.service
+sudo service php8.3-fpm restart

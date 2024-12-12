@@ -12,6 +12,7 @@ echo "<Directory /home/changwoo/develop/php/phpmyadmin>
 	AllowOverride all
 	Require all granted
 </Directory>
-Alias /phpmyadmin /home/changwoo/develop/php/phpmyadmin 
+Alias /phpmyadmin /home/changwoo/develop/php/phpmyadmin
 " > /home/changwoo/develop/apache2/conf.d/phpmyadmin.conf
 
+sudo service apache2 restart
