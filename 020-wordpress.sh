@@ -21,6 +21,9 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 mv wp-cli.phar ~/bin/wp
 chmod +x ~/bin/wp
 
+# Install subversion
+sudo apt install -y subversion
+
 # Directory
 echo "<Directory \"$WP_BASE\">
     Require all granted
